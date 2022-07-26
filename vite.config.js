@@ -9,6 +9,11 @@ const config = {
       $lib: resolve('./src/lib'),
       $prod: resolve('./tusculum')
     }
+  },
+  server: {
+    fs: {
+      allow: 'tusculum'
+    }
   }
 };
 
