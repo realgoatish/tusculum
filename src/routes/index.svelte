@@ -1,57 +1,37 @@
 <script lang='ts'>
 
-  import Section from '$prod/components/Section.svelte'
-  import Article from '$prod/components/Article.svelte'
-  import Heading from '$prod/components/Heading.svelte'
+  import Section from '$prod/components/DocumentSection.svelte'
+  import Heading from '$prod/components/DocumentHeading.svelte'
 
 </script>
 
 <main>
   <Heading>
-    This is a test top-level heading
+    This should be an H1
   </Heading>
-  <Section>
-    <Heading>
-      This is a test heading for first section (H2)
-    </Heading>
-    <Heading>
-      This is also at level 2 but should have different aria-labelledby
-    </Heading>
-    <Article>
-      <Heading>
-        This is a test heading for an Article nested in a section (H3)
-      </Heading>
-    </Article>
-  </Section>
-  <Heading>
-    This is not nested, back to top-level
+  <Heading level={1}>
+    This should be an H1 (explicitly initialize an H1)
   </Heading>
-  <Section>
+  <Section tag="main" level={4}>
     <Heading>
-      This is nested to level 2
+      This should be an H4 because we manually set the level on the parent section
     </Heading>
-    <Article>
+    <Heading>
+      This should also be an H4 for the same reason
+    </Heading>
+    <Section>
       <Heading>
-        This is nested to level 3
+        This should be an H5 if it's inheriting the manually-set level from above
       </Heading>
-      <Section>
+      <Heading level="-2">
+        This should be an H3 because we manually overrode the parent section's level (5) w/ "-2"
+      </Heading>
+      <Section level="-3">
         <Heading>
-          This is nested to level 4
+          This should be an H2 because we manually overrode the parent Section's level (5) w/ "-2" on this Section
         </Heading>
-        <Section>
-          <Heading>
-            This is nested to level 5
-          </Heading>
-          <Article>
-            <Heading>
-              This is nested to level 6
-            </Heading>
-          </Article>
-        </Section>
       </Section>
-    </Article>
+
+    </Section>
   </Section>
-  <Heading>
-    This is not nested, back to top-level
-  </Heading>
 </main>
