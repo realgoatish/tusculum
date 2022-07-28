@@ -24,9 +24,8 @@
   "exports": {
     "./package.json": "./package.json",
     "./actions": "./actions/index.js",
-    "./components/Article.svelte": "./components/Article.svelte",
-    "./components/Heading.svelte": "./components/Heading.svelte",
-    "./components/Section.svelte": "./components/Section.svelte",
+    "./components/DocumentHeading.svelte": "./components/DocumentHeading.svelte",
+    "./components/DocumentSection.svelte": "./components/DocumentSection.svelte",
     "./constants": "./constants/index.js",
     ".": "./index.js"
   },

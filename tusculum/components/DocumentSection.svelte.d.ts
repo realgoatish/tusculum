@@ -4,6 +4,8 @@ declare const __propDef: {
         /** Set an optional class name for the top-level element of this component to enable
            * scoped styling of each component instance from outside (in parent components or pages)
           */ wrapperClass?: string | undefined;
+        level?: string | number | undefined;
+        tag?: string | undefined;
     };
     events: {
         [evt: string]: CustomEvent<any>;
@@ -12,9 +14,9 @@ declare const __propDef: {
         default: {};
     };
 };
-export declare type HeadingProps = typeof __propDef.props;
-export declare type HeadingEvents = typeof __propDef.events;
-export declare type HeadingSlots = typeof __propDef.slots;
-export default class Heading extends SvelteComponentTyped<HeadingProps, HeadingEvents, HeadingSlots> {
+export declare type DocumentSectionProps = typeof __propDef.props;
+export declare type DocumentSectionEvents = typeof __propDef.events;
+export declare type DocumentSectionSlots = typeof __propDef.slots;
+export default class DocumentSection extends SvelteComponentTyped<DocumentSectionProps, DocumentSectionEvents, DocumentSectionSlots> {
 }
 export {};
