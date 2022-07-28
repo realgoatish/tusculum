@@ -28,8 +28,8 @@
     // must be between 1 - 6
     level = Math.min(getContext(headingLevel), 6)
   } else {
-    // if no override & no context was already set by an ancestor, initialize the context as 2
-    level = 2
+    // if no override & no context was already set by an ancestor, initialize the context as 1
+    level = 1
   }
 
   let currentCounterValue = getContext(counter)
