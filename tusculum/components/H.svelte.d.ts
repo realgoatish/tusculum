@@ -13,9 +13,9 @@ declare const __propDef: {
         default: {};
     };
 };
-export declare type DocumentHeadingProps = typeof __propDef.props;
-export declare type DocumentHeadingEvents = typeof __propDef.events;
-export declare type DocumentHeadingSlots = typeof __propDef.slots;
-export default class DocumentHeading extends SvelteComponentTyped<DocumentHeadingProps, DocumentHeadingEvents, DocumentHeadingSlots> {
+export declare type HProps = typeof __propDef.props;
+export declare type HEvents = typeof __propDef.events;
+export declare type HSlots = typeof __propDef.slots;
+export default class H extends SvelteComponentTyped<HProps, HEvents, HSlots> {
 }
 export {};

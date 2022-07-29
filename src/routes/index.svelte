@@ -1,35 +1,36 @@
 <script lang='ts'>
 
-  import Section from '$prod/components/DocumentSection.svelte'
-  import Heading from '$prod/components/DocumentHeading.svelte'
+  import Section from '$prod/components/Section.svelte'
+  import H from '$prod/components/H.svelte'
 
 </script>
 
 <main>
-  <Heading>
-    This should be an H1
-  </Heading>
-  <Heading level={1}>
-    This should be an H1 (explicitly initialize an H1)
-  </Heading>
-  <Section tag="main" level={4}>
-    <Heading>
+  <h1>Use a regular H1 for your page title - one per page</h1>
+  <H>
+    This should be an H2
+  </H>
+  <H level="+1">
+    This should be an H3 (explicitly set with H's level prop)
+  </H>
+  <Section level={4}>
+    <H>
       This should be an H4 because we manually set the level on the parent section
-    </Heading>
-    <Heading>
+    </H>
+    <H>
       This should also be an H4 for the same reason
-    </Heading>
+    </H>
     <Section>
-      <Heading>
+      <H>
         This should be an H5 if it's inheriting the manually-set level from above
-      </Heading>
-      <Heading level="-2">
+      </H>
+      <H level="-2">
         This should be an H3 because we manually overrode the parent section's level (5) w/ "-2"
-      </Heading>
+      </H>
       <Section level="-3">
-        <Heading>
+        <H>
           This should be an H2 because we manually overrode the parent Section's level (5) w/ "-2" on this Section
-        </Heading>
+        </H>
       </Section>
 
     </Section>

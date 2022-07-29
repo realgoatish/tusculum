@@ -5,7 +5,6 @@ declare const __propDef: {
            * scoped styling of each component instance from outside (in parent components or pages)
           */ wrapperClass?: string | undefined;
         level?: string | number | undefined;
-        tag?: string | undefined;
     };
     events: {
         [evt: string]: CustomEvent<any>;
@@ -14,9 +13,9 @@ declare const __propDef: {
         default: {};
     };
 };
-export declare type DocumentSectionProps = typeof __propDef.props;
-export declare type DocumentSectionEvents = typeof __propDef.events;
-export declare type DocumentSectionSlots = typeof __propDef.slots;
-export default class DocumentSection extends SvelteComponentTyped<DocumentSectionProps, DocumentSectionEvents, DocumentSectionSlots> {
+export declare type SectionProps = typeof __propDef.props;
+export declare type SectionEvents = typeof __propDef.events;
+export declare type SectionSlots = typeof __propDef.slots;
+export default class Section extends SvelteComponentTyped<SectionProps, SectionEvents, SectionSlots> {
 }
 export {};

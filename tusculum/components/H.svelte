@@ -9,26 +9,26 @@ export let level = undefined;
 let id = `h-${Math.floor((new Date() * Math.random()))}`;
 // if user manually overrides the heading level with the prop, set it to that number
 if (typeof level === 'number') {
-    // must be between 1 - 6
-    level = Math.max(1, Math.min(level, 6));
+    // must be between 2 - 6
+    level = Math.max(2, Math.min(level, 6));
     // if user did a manual override with a relative value, set it to that number
 }
 else if (typeof level === 'string' && (level.startsWith("+") || level.startsWith("-"))) {
-    level = (getContext(headingLevel) || 1) + parseInt(level);
+    level = (getContext(headingLevel) || 2) + parseInt(level);
     // if user's manual override is a string representation of a number, parse the int & set it to that number
 }
 else if (typeof level === 'string') {
-    // must be between 1 - 6
-    level = Math.max(1, Math.min(parseInt(level), 6));
+    // must be between 2 - 6
+    level = Math.max(2, Math.min(parseInt(level), 6));
     // if no manual override, get the context set by an ancestor
 }
 else if (typeof getContext(headingLevel) === 'number') {
-    // must be between 1 - 6
+    // must be between 2 - 6
     level = Math.min(getContext(headingLevel), 6);
 }
 else {
-    // if no override & no context was already set by an ancestor, initialize the context as 1
-    level = 1;
+    // if no override & no context was already set by an ancestor, initialize the context as 2
+    level = 2;
 }
 let currentCounterValue = getContext(counter);
 $: if (browser && $currentCounterValue === 0) {
