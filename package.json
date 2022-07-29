@@ -1,6 +1,10 @@
 {
 	"name": "tusculum",
 	"version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/realgoatish/source-tusculum/tree/main/tusculum"
+  },
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
