@@ -2,7 +2,7 @@
 
 Automated heading ranks for HTML document outline using Svelte. Contains 2 components that will automatically generate proper `<h2>`-`<h6>` elements based on the section structure of your HTML document.
 
-Tusculum doesn't handle `<h1>` tags, since (you should only have one per page)[https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_Elements#multiple_h1_elements_on_one_page]. Automating this wouldn't be worth the accessibility pitfalls it would invite.
+Tusculum doesn't handle `<h1>` tags, since [you should only have one per page](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_Elements#multiple_h1_elements_on_one_page). Automating this wouldn't be worth the accessibility pitfalls it would invite.
 
 Each `H` inside of root `Section` will become `h2`. If you nest two `Section` components, each `H` inside will become `<h3>`, etc.
 
@@ -16,7 +16,7 @@ npm install tusculum
 
 ## Recommended usage
 
-Tusculum provides (custom)[https://github.com/realgoatish/tusculum/blob/master/README.md#custom-heading-level] and (relative)[https://github.com/realgoatish/tusculum/blob/master/README.md#relative-heading-level] heading levels, plus (custom)[https://github.com/realgoatish/tusculum/blob/master/README.md#custom-section-level] and (relative)[https://github.com/realgoatish/tusculum/blob/master/README.md#relative-section-level] section levels for explicitly setting levels or relationships when you need to, but you should be judicious with using them. The purpose of Tusculum is automation, so leverage that to the maximum extent possible.
+Tusculum provides [custom](https://github.com/realgoatish/tusculum/blob/master/README.md#custom-heading-level) and [relative](https://github.com/realgoatish/tusculum/blob/master/README.md#relative-heading-level) heading levels, plus [custom](https://github.com/realgoatish/tusculum/blob/master/README.md#custom-section-level) and [relative](https://github.com/realgoatish/tusculum/blob/master/README.md#relative-section-level) section levels for explicitly setting levels or relationships when you need to, but you should be judicious with using them. The purpose of Tusculum is automation, so leverage that to the maximum extent possible.
 
 The happy path is to simply use `<Section>` for denoting major sections of your site, and derive your `H` levels in relation to them as needed, like so:
 
@@ -62,12 +62,12 @@ In other words, it will render code like this:
 </section>
 ```
 
-Since `<section>` tags with headings have generic (landmark roles)[https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles#3._landmark_roles], they're intended for screen readers to identify major regions of a page[^1]. You're advised not to overuse them. This is why Tusculum provides other ways to increment or derive heading levels automatically. From (MDN)[https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/region_role#accessibility_concerns]:
+Since `<section>` tags with headings have generic [landmark roles](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles#3._landmark_roles), they're intended for screen readers to identify major regions of a page[^1]. You're advised not to overuse them. This is why Tusculum provides other ways to increment or derive heading levels automatically. From [MDN](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/region_role#accessibility_concerns):
 
 > Use sparingly! Landmark roles are intended to be used sparingly, to identify larger overall sections of the document. Using too many landmark roles can create "noise" in screen readers, making it difficult to understand the overall layout of the page.
 
 [^1]: 
-  It's also worth nothing that the other tags with (landmark roles)[https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles#3._landmark_roles], such as `<header>`, `<nav>`, `<main>`, `<aside>`, `<form>`, and `<footer>`, are more semantically descriptive. They usually don't need accessible names unless they're used in unusual ways. 
+  It's also worth nothing that the other tags with [landmark roles](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles#3._landmark_roles), such as `<header>`, `<nav>`, `<main>`, `<aside>`, `<form>`, and `<footer>`, are more semantically descriptive. They usually don't need accessible names unless they're used in unusual ways. 
   
   So a single `<header>`, `<aside>`, `<main>` or `<footer>` as a direct child of `<body>`, or a single `<nav>` or `<form>` on a page, don't need aria semantics added. On the other hand, e.g. a second `<nav>` on the page would. 
 
@@ -145,6 +145,6 @@ Heading level cannot reach level lower than 2 and greater than 6. If calculated 
 
 ## Special Acknowledgements...
 
-The original inspiration for this concept came from Heydon Pickering's (article)[https://medium.com/@Heydon/managing-heading-levels-in-design-systems-18be9a746fa3] on automating heading tags in React. An early iteration of my Svelte adaptation is found in (this)[https://stackoverflow.com/questions/61303237/how-to-set-dynamic-html-tag-according-to-props-in-svelte/68155771#68155771] Stackoverflow answer. 
+The original inspiration for this concept came from Heydon Pickering's [article](https://medium.com/@Heydon/managing-heading-levels-in-design-systems-18be9a746fa3) on automating heading tags in React. An early iteration of my Svelte adaptation is found in [this](https://stackoverflow.com/questions/61303237/how-to-set-dynamic-html-tag-according-to-props-in-svelte/68155771#68155771) Stackoverflow answer. 
 
-My original idea for the functionality was too opinionated. It required a specific style of authoring HTML. When I decided to write and publish a full package, I found that GitHub user (mcibique)[https://github.com/mcibique]'s (vue-headings)[https://www.npmjs.com/package/vue-headings] library handled the edge cases and provided the necessary escape hatches to do this the right way. There are lots of valid ways to author HTML documents, so it's important to provide the flexibility to manually override heading levels.
+My original idea for the functionality was too opinionated. It required a specific style of authoring HTML. When I decided to write and publish a full package, I found that GitHub user [mcibique](https://github.com/mcibique)'s [vue-headings](https://www.npmjs.com/package/vue-headings) library handled the edge cases and provided the necessary escape hatches to do this the right way. There are lots of valid ways to author HTML documents, so it's important to provide the flexibility to manually override heading levels.
