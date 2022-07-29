@@ -67,9 +67,7 @@ Since `<section>` tags with headings have generic [landmark roles](https://devel
 > Use sparingly! Landmark roles are intended to be used sparingly, to identify larger overall sections of the document. Using too many landmark roles can create "noise" in screen readers, making it difficult to understand the overall layout of the page.
 
 [^1]: 
-  It's also worth nothing that the other tags with [landmark roles](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles#3._landmark_roles), such as `<header>`, `<nav>`, `<main>`, `<aside>`, `<form>`, and `<footer>`, are more semantically descriptive. They usually don't need accessible names unless they're used in unusual ways. 
-  
-  So a single `<header>`, `<aside>`, `<main>` or `<footer>` as a direct child of `<body>`, or a single `<nav>` or `<form>` on a page, don't need aria semantics added. On the other hand, e.g. a second `<nav>` on the page would. 
+    It's also worth nothing that the other tags with [landmark roles](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles#3._landmark_roles), such as `<header>`, `<nav>`, `<main>`, `<aside>`, `<form>`, and `<footer>`, are more semantically descriptive. They usually don't need accessible names unless they're used in unusual ways. e.g. a single `<header>`, `<aside>`, `<main>` or `<footer>` as a direct child of `<body>`, or a single `<nav>` or `<form>` on a page, don't need aria semantics added. On the other hand, e.g. a second `<nav>` on the page would. 
 
 ## Full feature overview
 
