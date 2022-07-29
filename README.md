@@ -1,33 +1,12 @@
 # Tusculum
 
-Automated heading ranks for HTML document outline using Svelte. Contains 2 components that will automatically generate proper `<h1>`-`<h6>` elements based on the section structure of your HTML document.
+Automated heading ranks for HTML document outline using Svelte. Contains 2 components that will automatically generate proper `<h2>`-`<h6>` elements based on the section structure of your HTML document.
 
-Each `DocumentHeading` inside of root `DocumentSection` will become `h1`. If you nest two `DocumentSection` components, each `DocumentHeading` inside will become `<h2>`, etc.
+Tusculum doesn't handle `<h1>` tags, since (you should only have one per page)[https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_Elements#multiple_h1_elements_on_one_page]. Automating this wouldn't be worth the accessibility pitfalls it would invite.
+
+Each `H` inside of root `Section` will become `h2`. If you nest two `Section` components, each `H` inside will become `<h3>`, etc.
 
 Useful for dynamically setting headings in re-usable components when you don't know where your component will be placed in the DOM.
-
-Consider you have an accordion component rendering this:
-
-```html
-<ul>
-  <li>
-    <h4>Heading 1</h4>
-    ... content ...
-  </li>
-  <li>
-    <h4>Heading 2</h4>
-    ... content ...
-  </li>
-  <li>
-    <h4>Heading 3</h4>
-    ... content ...
-  </li>
-</ul>
-```
-
-Is `<h4>` the right heading here? If there are no `<h3>` elements on the page, those should be `<h3>`s instead!
-
-Replace the `<h4>` with `<DocumentHeading>` component and it will automatically generate that for you based on number of `<DocumentSection>`s it is nested in.
 
 ## Installation
 
@@ -35,96 +14,78 @@ Replace the `<h4>` with `<DocumentHeading>` component and it will automatically 
 npm install tusculum
 ```
 
-## Usage
+## Recommended usage
 
-### Basic example
+Tusculum provides (custom)[https://github.com/realgoatish/tusculum/blob/master/README.md#custom-heading-level] and (relative)[https://github.com/realgoatish/tusculum/blob/master/README.md#relative-heading-level] heading levels, plus (custom)[https://github.com/realgoatish/tusculum/blob/master/README.md#custom-section-level] and (relative)[https://github.com/realgoatish/tusculum/blob/master/README.md#relative-section-level] section levels for explicitly setting levels or relationships when you need to, but you should be judicious with using them. The purpose of Tusculum is automation, so leverage that to the maximum extent possible.
+
+The happy path is to simply use `<Section>` for denoting major sections of your site, and derive your `H` levels in relation to them as needed, like so:
 
 ```html
-<!-- MyComponent.svelte -->
+<!-- MyPage.svelte -->
 
 <script>
-  import { DocumentSection, DocumentHeading } from 'tusculum'
+  import { Section, H } from 'tusculum'
 </script>
 
-<DocumentSection>
-  <DocumentHeading>My Heading</DocumentHeading>
-
-  <DocumentSection>
-    <DocumentHeading>My Child Heading</DocumentHeading>
-    <p>Lorem ipsum ...</p>
-
-    <DocumentHeading>My Child Heading</DocumentHeading>
-    <p>Lorem ipsum ...</p>
-
-    <DocumentHeading>My Child Heading</DocumentHeading>
-    <p>Lorem ipsum ...</p>
-
-    <DocumentSection>
-      <DocumentHeading>My Grand Child Heading</DocumentHeading>
-      <p>Lorem ipsum ...</p>
-
-      <DocumentHeading>My Grand Child Heading</DocumentHeading>
-      <p>Lorem ipsum ...</p>
-    </DocumentSection>
-  </DocumentSection>
-</DocumentSection>
+<body>
+  ...
+  <main>
+    <h1>My Page Heading</h1>
+    ...
+    <Section>
+      <!-- <h2> -->
+      <H>My Articles Section</H>
+      <article>
+        <!-- <h3> -->
+        <H level="+1">My First Article Heading</H>
+        ...
+      </article>
+      <article>
+        <!-- <h3> -->
+        <H level="+1">My Second Article Heading</H>
+        ... etc
+      </article>
+    </Section>
+  </main>
 ```
 
-Renders following document structure:
+## A note about accessibility
+
+### Section will create an `aria-labelledby` relationship with its first descendant heading
+
+In other words, it will render code like this:
 
 ```html
-<section>
-  <h1>My Heading</h1>
-
-  <section>
-    <h2>My Child Heading</h2>
-    <p>Lorem ipsum ...</p>
-
-    <h2>My Child Heading</h2>
-    <p>Lorem ipsum ...</p>
-
-    <h2>My Child Heading</h2>
-    <p>Lorem ipsum ...</p>
-
-    <section>
-      <h3>My Grand Child Heading</h3>
-      <p>Lorem ipsum ...</p>
-
-      <h3>My Grand Child Heading</h3>
-      <p>Lorem ipsum ...</p>
-    </section>
-  </section>
+<section aria-labelledby="h-1119060909947">
+  <!-- this heading will be announced as the section's name by screen readers e.g. 'Section, News Feed' -->
+  <h2 id="h-1119060909947">News Feed</h2>
 </section>
 ```
 
-### Custom section tag
+Since `<section>` tags with headings have generic (landmark roles)[https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles#3._landmark_roles], they're intended for screen readers to identify major regions of a page[^1]. You're advised not to overuse them. This is why Tusculum provides other ways to increment or derive heading levels automatically. From (MDN)[https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/region_role#accessibility_concerns]:
 
-If you don't like `<section>` element, you can pass any other tag into the `tag` prop:
+> Use sparingly! Landmark roles are intended to be used sparingly, to identify larger overall sections of the document. Using too many landmark roles can create "noise" in screen readers, making it difficult to understand the overall layout of the page.
 
-```html
-<DocumentSection tag="main">
-  <DocumentSection tag="nav">
-    ...
-  </DocumentSection>
-  <DocumentSection tag="footer">
-    ...
-  </DocumentSection>
-</DocumentSection>
-```
+[^1]: 
+  It's also worth nothing that the other tags with (landmark roles)[https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles#3._landmark_roles], such as `<header>`, `<nav>`, `<main>`, `<aside>`, `<form>`, and `<footer>`, are more semantically descriptive. They usually don't need accessible names unless they're used in unusual ways. 
+  
+  So a single `<header>`, `<aside>`, `<main>` or `<footer>` as a direct child of `<body>`, or a single `<nav>` or `<form>` on a page, don't need aria semantics added. On the other hand, e.g. a second `<nav>` on the page would. 
+
+## Full feature overview
 
 ### Custom section level
 
 You can adjust the current level of section by passing custom level via prop:
 
 ```html
-<DocumentSection level="2"> <!-- This section would normally be level 1 -->
-  <DocumentSection><!-- This section will have level 3 (parent + 1) -->
-    <DocumentHeading>H3</DocumentHeading>
-  </DocumentSection>
-  <DocumentSection level="1"><!-- ignores the parent and sets the level to 1 -->
-    <DocumentHeading>H1</DocumentHeading>
-  </DocumentSection>
-</DocumentSection>
+<Section level="3"> <!-- This section would normally be level 2 -->
+  <Section><!-- This section will have level 4 (parent + 1) -->
+    <H>H4</H>
+  </Section>
+  <Section level="2"><!-- ignores the parent and sets the level to 2 -->
+    <H>H2</H>
+  </Section>
+</Section>
 ```
 
 ### Relative section level
@@ -132,14 +93,14 @@ You can adjust the current level of section by passing custom level via prop:
 You can set the current level of the section relatively to it's parent section.
 
 ```html
-<DocumentSection level="4">
-  <DocumentSection level="+2"><!-- This section will have level 6 (parent + 2) -->
-    <DocumentHeading>H6</DocumentHeading>
-  </DocumentSection>
-  <DocumentSection level="-2"><!-- This section will have level 2 (parent - 2) -->
-    <DocumentHeading>H2</DocumentHeading>
-  </DocumentSection>
-</DocumentSection>
+<Section level="4">
+  <Section level="+2"><!-- This section will have level 6 (parent + 2) -->
+    <H>H6</H>
+  </Section>
+  <Section level="-2"><!-- This section will have level 2 (parent - 2) -->
+    <H>H2</H>
+  </Section>
+</Section>
 ```
 
 ### Custom heading level
@@ -147,14 +108,14 @@ You can set the current level of the section relatively to it's parent section.
 You can adjust the current level of heading by passing custom level via prop:
 
 ```html
-<DocumentSection>
-  <DocumentSection>
-    <DocumentHeading level="5">H5</DocumentHeading> <!-- ignores the parent level and use level 5 -->
-  </DocumentSection>
-  <DocumentSection>
-    <DocumentHeading level="1">H1</DocumentHeading><!-- ignores the parent and sets the level to 1 -->
-  </DocumentSection>
-</DocumentSection>
+<Section>
+  <Section>
+    <H level="5">H5</H> <!-- ignores the parent level and use level 5 -->
+  </Section>
+  <Section>
+    <H level="2">H2</H><!-- ignores the parent and sets the level to 2 -->
+  </Section>
+</Section>
 ```
 
 ### Relative heading level
@@ -162,66 +123,24 @@ You can adjust the current level of heading by passing custom level via prop:
 You can set the current level of the heading relatively to it's parent section.
 
 ```html
-<DocumentSection level="4">
-  <DocumentHeading level="-2">H2</DocumentHeading><!-- This heading will have level 2 (parent - 2) -->
-  <DocumentSection level="2">
-    <DocumentHeading level="+3">H5</DocumentHeading><!-- This heading will have level 5 (parent + 3) -->
-  </DocumentSection>
-</DocumentSection>
+<Section level="4">
+  <H level="-2">H2</H><!-- This heading will have level 2 (parent - 2) -->
+  <Section level="2">
+    <H level="+3">H5</H><!-- This heading will have level 5 (parent + 3) -->
+  </Section>
+</Section>
 ```
 
 ### Heading rank overflow
 
-Heading level cannot reach level lower than 1 and greater than 6. If calculated level is lower than one, it will become 1. If calculated level is greater than 6, it will become 6.
+Heading level cannot reach level lower than 2 and greater than 6. If calculated level is lower than two, it will become 2. If calculated level is greater than 6, it will become 6.
 
 ```html
-<DocumentSection level="100">
-  <DocumentHeading>H6</DocumentHeading>
-  <DocumentHeading level="-200">H1</DocumentHeading>
-  <DocumentHeading level="+100">H6</DocumentHeading>
-</DocumentSection>
-```
-
-### Recommended usage
-
-Be aware that a `DocumentHeading` component that isn't nested in any `DocumentSection` components will default to rendering an `<h1>`. When a `DocumentHeading` component __is__ nested at the first level in a `DocumentSection` component, it will also default to rendering as `<h1>`. 
-
-This could lead to unexpected results and create multiple `<h1>`s on a page... 
-
-```html
-<body>
-  <!-- renders as <h1> -->
-  <DocumentHeading>My Heading</DocumentHeading>
-  ...
-  <DocumentSection>
-    <!-- also renders as <h1> -->
-    <DocumentHeading>My First Nested heading</DocumentHeading>
-    ...
-  </DocumentSection>
-</body>
-```
-
-(Read about why you don't want that)[https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_Elements#multiple_h1_elements_on_one_page]. Tusculum provides (custom)[https://github.com/realgoatish/tusculum/blob/master/README.md#custom-heading-level] and (relative)[https://github.com/realgoatish/tusculum/blob/master/README.md#relative-heading-level] heading levels, plus (custom)[https://github.com/realgoatish/tusculum/blob/master/README.md#custom-section-level] and (relative)[https://github.com/realgoatish/tusculum/blob/master/README.md#relative-section-level] section levels for explicitly setting these things when you need to, but you're encouraged to be judicious with them. Use these only when they're really needed, so they don't turn into a maintenance footgun and defeat the purpose of Tusculum: automation.
-
-The path of least resistance is to simply always use a new level of nesting to create new heading levels, like so:
-
-```html
-<body>
-  ...
-  <DocumentSection tag="main">
-    <!-- <h1> -->
-    <DocumentHeading>My Page Heading</DocumentHeading>
-    ...
-    <DocumentSection>
-      <!-- <h2> -->
-      <DocumentHeading>My First Page Section</DocumentHeading>
-      <DocumentSection tag="article">
-        <!-- <h3> -->
-        <DocumentHeading>My Article Heading</DocumentHeading>
-        ... etc
-      </DocumentSection>
-    </DocumentSection>
-  </DocumentSection>
+<Section level="100">
+  <H>H6</H>
+  <H level="-200">H2</H>
+  <H level="+100">H6</H>
+</Section>
 ```
 
 ## Special Acknowledgements...
