@@ -16,7 +16,7 @@ npm install tusculum
 
 ## Recommended usage
 
-Tusculum provides [custom](https://github.com/realgoatish/tusculum/blob/master/README.md#custom-heading-level) and [relative](https://github.com/realgoatish/tusculum/blob/master/README.md#relative-heading-level) heading levels, plus [custom](https://github.com/realgoatish/tusculum/blob/master/README.md#custom-section-level) and [relative](https://github.com/realgoatish/tusculum/blob/master/README.md#relative-section-level) section levels for explicitly setting levels or relationships when you need to, but you should be judicious with using them. The purpose of Tusculum is automation, so leverage that to the maximum extent possible.
+Tusculum provides [custom](https://github.com/realgoatish/tusculum#custom-heading-level) and [relative](https://github.com/realgoatish/tusculum#relative-heading-level) heading levels, plus [custom](https://github.com/realgoatish/tusculum#custom-section-level) and [relative](https://github.com/realgoatish/tusculum#relative-section-level) section levels for explicitly setting levels or relationships when you need to, but you should be judicious with using them. The purpose of Tusculum is automation, so leverage that to the maximum extent possible.
 
 The happy path is to simply use `<Section>` for denoting major sections of your site, and derive your `H` levels in relation to them as needed, like so:
 
