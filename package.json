@@ -1,17 +1,17 @@
 {
 	"name": "tusculum",
-  "author": "realgoatish",
-  "keywords": [
-    "svelte",
-    "headings",
-    "outlines",
-    "HTML sections",
-    "HTML outlines",
-    "accessibility",
-    "a11y",
-    "front-end"
-  ],
-	"version": "0.0.4",
+	"author": "realgoatish",
+	"keywords": [
+		"svelte",
+		"headings",
+		"outlines",
+		"HTML sections",
+		"HTML outlines",
+		"accessibility",
+		"a11y",
+		"front-end"
+	],
+	"version": "0.0.5",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/realgoatish/source-tusculum.git",
