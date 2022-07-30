@@ -1,9 +1,10 @@
 {
   "name": "tusculum",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "repository": {
     "type": "git",
-    "url": "https://github.com/realgoatish/source-tusculum/tree/main/tusculum"
+    "url": "https://github.com/realgoatish/source-tusculum/tree/main/tusculum",
+    "directory": "tusculum"
   },
   "devDependencies": {
     "@playwright/test": "^1.22.2",

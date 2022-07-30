@@ -3,7 +3,8 @@
 	"version": "0.0.2",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/realgoatish/source-tusculum/tree/main/tusculum"
+		"url": "https://github.com/realgoatish/source-tusculum/tree/main/tusculum",
+    "directory": "tusculum"
 	},
 	"scripts": {
 		"dev": "vite dev",
