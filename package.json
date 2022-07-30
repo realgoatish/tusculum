@@ -14,8 +14,7 @@
 	"version": "0.0.5",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/realgoatish/source-tusculum.git",
-		"directory": "tusculum"
+		"url": "git+https://github.com/realgoatish/tusculum.git"
 	},
 	"scripts": {
 		"dev": "vite dev",
