@@ -27,6 +27,8 @@ else if (typeof level === 'string' && (level.startsWith("+") || level.startsWith
 else if (typeof level === 'string') {
     // must be between 2 - 6
     level = Math.min(Math.max(parseInt(level), 2), 6);
+    setContext(headingLevel, level);
+    setContext(counter, store);
     // if no prop was supplied, look for a context that was already set from an ancestor DocumentSection component
 }
 else if (typeof getContext(headingLevel) === 'number') {
@@ -42,6 +44,10 @@ else {
 }
 let currentCounterValue = getContext(counter);
 let section = null;
+// whenever this store value changes, run the action to update this <Section>'s
+// 'aria-labelledby' attribute with its first descendant <H>'s 'id'.
+// this keeps the two in sync even when that <H>'s DOM gets updated independently
+// i.e. if its 'id' attribute changes, you don't have to worry about it
 $: $currentCounterValue, labelRegionWithHeading(section, browser);
 </script>
 
