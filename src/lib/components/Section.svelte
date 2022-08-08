@@ -33,6 +33,8 @@
   } else if (typeof level === 'string') {
     // must be between 2 - 6
     level = Math.min(Math.max(parseInt(level), 2), 6)
+    setContext(headingLevel, level)
+    setContext(counter, store)
 
     // if no prop was supplied, look for a context that was already set from an ancestor DocumentSection component
   } else if (typeof getContext(headingLevel) === 'number') {
