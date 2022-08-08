@@ -52,6 +52,10 @@
 
   let section = null
 
+  // whenever this store value changes, run the action to update this <Section>'s
+  // 'aria-labelledby' attribute with its first descendant <H>'s 'id'.
+  // this keeps the two in sync even when that <H>'s DOM gets updated independently
+  // i.e. if its 'id' attribute changes, you don't have to worry about it
   $: $currentCounterValue, labelRegionWithHeading(section, browser)
 
 </script>
