@@ -1,12 +1,11 @@
-
 <script>import { setContext, getContext } from 'svelte';
 import { headingLevel, counter } from '../constants/index.js';
 import { labelRegionWithHeading } from '../actions/index.js';
 import { writable } from 'svelte/store';
-import { browser } from '$app/env';
+import { browser } from '$app/environment';
 /** Set an optional class name for the top-level element of this component to enable
  * scoped styling of each component instance from outside (in parent components or pages)
-*/
+ */
 export let wrapperClass = undefined;
 export let level = undefined;
 let store = writable(0);
@@ -18,7 +17,7 @@ if (typeof level === 'number') {
     setContext(counter, store);
     // if user did a manual override with a relative value, parse the int & set it to that number
 }
-else if (typeof level === 'string' && (level.startsWith("+") || level.startsWith("-"))) {
+else if (typeof level === 'string' && (level.startsWith('+') || level.startsWith('-'))) {
     level = (getContext(headingLevel) || 2) + parseInt(level);
     setContext(headingLevel, level);
     setContext(counter, store);
@@ -51,9 +50,6 @@ let section = null;
 $: $currentCounterValue, labelRegionWithHeading(section, browser);
 </script>
 
-<section
-  bind:this={section}
-  class:wrapperClass
->
-  <slot />
+<section bind:this={section} class:wrapperClass>
+	<slot />
 </section>

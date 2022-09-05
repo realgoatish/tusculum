@@ -2,8 +2,8 @@ import { SvelteComponentTyped } from "svelte";
 declare const __propDef: {
     props: {
         /** Set an optional class name for the top-level element of this component to enable
-           * scoped styling of each component instance from outside (in parent components or pages)
-          */ wrapperClass?: string | undefined;
+             * scoped styling of each component instance from outside (in parent components or pages)
+             */ wrapperClass?: string | undefined;
         level?: string | number | undefined;
     };
     events: {
