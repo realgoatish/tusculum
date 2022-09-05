@@ -6,12 +6,12 @@ const config = {
 	// Consult https://github.com/sveltejs/svelte-preprocess
 	// for more information about preprocessors
 	preprocess: preprocess(),
+	package: {
+		dir: 'tusculum',
+		emitTypes: true
+	},
 	kit: {
-		adapter: adapter(),
-    package: {
-      dir: 'tusculum',
-      emitTypes: true
-    }
+		adapter: adapter()
 	}
 };
 
