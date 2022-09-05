@@ -1,19 +1,19 @@
 <script>import { getContext, afterUpdate } from 'svelte';
 import { headingLevel, counter } from '../constants/index.js';
-import { browser } from '$app/env';
+import { browser } from '$app/environment';
 /** Set an optional class name for the top-level element of this component to enable
  * scoped styling of each component instance from outside (in parent components or pages)
-*/
+ */
 export let wrapperClass = undefined;
 export let level = undefined;
-let id = `h-${Math.floor((new Date() * Math.random()))}`;
+let id = `h-${Math.floor(new Date() * Math.random())}`;
 // if user manually overrides the heading level with the prop, set it to that number
 if (typeof level === 'number') {
     // must be between 2 - 6
     level = Math.max(2, Math.min(level, 6));
     // if user did a manual override with a relative value, set it to that number
 }
-else if (typeof level === 'string' && (level.startsWith("+") || level.startsWith("-"))) {
+else if (typeof level === 'string' && (level.startsWith('+') || level.startsWith('-'))) {
     level = (getContext(headingLevel) || 2) + parseInt(level);
     // if user's manual override is a string representation of a number, parse the int & set it to that number
 }
@@ -45,11 +45,6 @@ afterUpdate(() => {
 });
 </script>
 
-<svelte:element 
-  this={`h${level}`} 
-  {id}
-  class:wrapperClass
->
-  <slot />
+<svelte:element this={`h${level}`} {id} class:wrapperClass>
+	<slot />
 </svelte:element>
-
