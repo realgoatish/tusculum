@@ -8,6 +8,8 @@
 	 */
 	export let wrapperClass: string = null;
 
+	export let ariaHidden = false;
+
 	export let level: string | number = null;
 
 	let id = `h-${Math.floor(new Date() * Math.random())}`;
@@ -53,6 +55,7 @@
 	this={`h${level}`}
 	{id}
 	class={wrapperClass ? `tusculum-h ${wrapperClass}` : 'tusculum-h'}
+	aria-hidden={ariaHidden}
 >
 	<slot />
 </svelte:element>
