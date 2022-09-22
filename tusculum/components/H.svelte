@@ -5,7 +5,6 @@ import { browser } from '$app/environment';
  * scoped styling of each component instance from outside (in parent components or pages)
  */
 export let wrapperClass = null;
-export let ariaHidden = false;
 export let level = null;
 let id = `h-${Math.floor(new Date() * Math.random())}`;
 // if user manually overrides the heading level with the prop, set it to that number
@@ -50,7 +49,6 @@ afterUpdate(() => {
 	this={`h${level}`}
 	{id}
 	class={wrapperClass ? `tusculum-h ${wrapperClass}` : 'tusculum-h'}
-	aria-hidden={ariaHidden}
 >
 	<slot />
 </svelte:element>

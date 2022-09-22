@@ -4,7 +4,6 @@ declare const __propDef: {
         /** Set an optional class name for the top-level element of this component to enable
              * scoped styling of each component instance from outside (in parent components or pages)
              */ wrapperClass?: string;
-        ariaHidden?: boolean;
         level?: string | number;
     };
     events: {
