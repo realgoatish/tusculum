@@ -52,7 +52,7 @@
 <svelte:element
 	this={`h${level}`}
 	{id}
-	class={wrapperClass ? `tusculum-h ${wrapperclass}` : 'tusculum-h'}
+	class={wrapperClass ? `tusculum-h ${wrapperClass}` : 'tusculum-h'}
 >
 	<slot />
 </svelte:element>
