@@ -52,7 +52,7 @@ $: $currentCounterValue, labelRegionWithHeading(section, browser);
 
 <section
 	bind:this={section}
-	class={wrapperClass ? `tusculum-section wrapperClass` : 'tusculum-section'}
+	class={wrapperClass ? `tusculum-section ${wrapperClass}` : 'tusculum-section'}
 >
 	<slot />
 </section>
