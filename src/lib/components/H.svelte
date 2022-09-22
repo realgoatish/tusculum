@@ -6,9 +6,9 @@
 	/** Set an optional class name for the top-level element of this component to enable
 	 * scoped styling of each component instance from outside (in parent components or pages)
 	 */
-	export let wrapperClass: string | undefined = undefined;
+	export let wrapperClass: string = null;
 
-	export let level: string | number | undefined = undefined;
+	export let level: string | number = null;
 
 	let id = `h-${Math.floor(new Date() * Math.random())}`;
 
@@ -49,6 +49,10 @@
 	});
 </script>
 
-<svelte:element this={`h${level}`} {id} class:wrapperClass>
+<svelte:element
+	this={`h${level}`}
+	{id}
+	class={wrapperClass ? `tusculum-h ${wrapperclass}` : 'tusculum-h'}
+>
 	<slot />
 </svelte:element>
