@@ -6,8 +6,8 @@ import { browser } from '$app/environment';
 /** Set an optional class name for the top-level element of this component to enable
  * scoped styling of each component instance from outside (in parent components or pages)
  */
-export let wrapperClass = undefined;
-export let level = undefined;
+export let wrapperClass = null;
+export let level = null;
 let store = writable(0);
 // if user did a manual override with a number, set the context to that
 if (typeof level === 'number') {
@@ -50,6 +50,9 @@ let section = null;
 $: $currentCounterValue, labelRegionWithHeading(section, browser);
 </script>
 
-<section bind:this={section} class:wrapperClass>
+<section
+	bind:this={section}
+	class={wrapperClass ? `tusculum-section wrapperClass` : 'tusculum-section'}
+>
 	<slot />
 </section>
