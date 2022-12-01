@@ -31,7 +31,7 @@ else {
 }
 let currentCounterValue = getContext(counter);
 // when this comp is first instantiated, the store is set to 1
-$: if (browser && $currentCounterValue === 0) {
+$: if ($currentCounterValue === 0) {
     $currentCounterValue = 1;
 }
 // any time this component's DOM is updated, set the store back to 0 to trigger

@@ -34,7 +34,7 @@
 	let currentCounterValue = getContext(counter);
 
 	// when this comp is first instantiated, the store is set to 1
-	$: if (browser && $currentCounterValue === 0) {
+	$: if ($currentCounterValue === 0) {
 		$currentCounterValue = 1;
 	}
 
