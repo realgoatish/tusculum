@@ -13,9 +13,9 @@ declare const __propDef: {
         default: {};
     };
 };
-export declare type HProps = typeof __propDef.props;
-export declare type HEvents = typeof __propDef.events;
-export declare type HSlots = typeof __propDef.slots;
+export type HProps = typeof __propDef.props;
+export type HEvents = typeof __propDef.events;
+export type HSlots = typeof __propDef.slots;
 export default class H extends SvelteComponentTyped<HProps, HEvents, HSlots> {
 }
 export {};

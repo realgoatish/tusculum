@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { getContext, afterUpdate } from 'svelte';
 	import { headingLevel, counter } from '$lib/constants/index.js';
-	import { browser } from '$app/environment';
 
 	/** Set an optional class name for the top-level element of this component to enable
 	 * scoped styling of each component instance from outside (in parent components or pages)
@@ -43,7 +42,7 @@
 	// its first ancestor <Section> syncing its 'aria-labelledby' with this heading's 'id'.
 	// This protects against the two getting out of sync due to obscure DOM changes.
 	afterUpdate(() => {
-		if (browser && $currentCounterValue) {
+		if ($currentCounterValue) {
 			$currentCounterValue = 0;
 		}
 	});

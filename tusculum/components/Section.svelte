@@ -2,7 +2,6 @@
 import { headingLevel, counter } from '../constants/index.js';
 import { labelRegionWithHeading } from '../actions/index.js';
 import { writable } from 'svelte/store';
-import { browser } from '$app/environment';
 /** Set an optional class name for the top-level element of this component to enable
  * scoped styling of each component instance from outside (in parent components or pages)
  */
@@ -47,7 +46,7 @@ let section = null;
 // 'aria-labelledby' attribute with its first descendant <H>'s 'id'.
 // this keeps the two in sync even when that <H>'s DOM gets updated independently
 // i.e. if its 'id' attribute changes, you don't have to worry about it
-$: $currentCounterValue, labelRegionWithHeading(section, browser);
+$: $currentCounterValue, labelRegionWithHeading(section);
 </script>
 
 <section
