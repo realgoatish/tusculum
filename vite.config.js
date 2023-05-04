@@ -6,12 +6,12 @@ const config = {
 	plugins: [sveltekit()],
 	resolve: {
 		alias: {
-			$prod: resolve('./tusculum')
+			$prod: resolve('./dist')
 		}
 	},
 	server: {
 		fs: {
-			allow: 'tusculum'
+			allow: 'dist'
 		}
 	}
 };

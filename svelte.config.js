@@ -7,7 +7,7 @@ const config = {
 	// for more information about preprocessors
 	preprocess: preprocess(),
 	package: {
-		dir: 'tusculum',
+		dir: 'dist',
 		emitTypes: true
 	},
 	kit: {
