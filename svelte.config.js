@@ -6,18 +6,18 @@ const config = {
 	// Consult https://github.com/sveltejs/svelte-preprocess
 	// for more information about preprocessors
 	preprocess: preprocess(),
-	package: {
-		dir: 'dist',
-		emitTypes: true
-	},
+	// package: {
+	// 	dir: 'dist',
+	// 	emitTypes: true
+	// },
 	kit: {
-    adapter: adapter(),
-    alias: {
-      "$lib": "src/lib",
-			"$lib/*": "src/lib/*",
-      "$prod": "tusclum",
-			"$prod/*": "tusculum/*"
-    }
+		adapter: adapter(),
+		alias: {
+			$lib: 'src/lib',
+			'$lib/*': 'src/lib/*',
+			$prod: 'dist',
+			'$prod/*': 'dist/*'
+		}
 	}
 };
 

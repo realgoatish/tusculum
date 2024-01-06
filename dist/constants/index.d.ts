@@ -1,7 +1,7 @@
 export namespace headingLevel {
-    const name: string;
+    let name: string;
 }
 export namespace counter {
-    const name_1: string;
+    let name_1: string;
     export { name_1 as name };
 }
