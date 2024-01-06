@@ -1,4 +1,4 @@
-import { SvelteComponent } from "svelte";
+import { SvelteComponentTyped } from "svelte";
 declare const __propDef: {
     props: {
         /** Set an optional class name for the top-level element of this component to enable
@@ -16,6 +16,6 @@ declare const __propDef: {
 export type HProps = typeof __propDef.props;
 export type HEvents = typeof __propDef.events;
 export type HSlots = typeof __propDef.slots;
-export default class H extends SvelteComponent<HProps, HEvents, HSlots> {
+export default class H extends SvelteComponentTyped<HProps, HEvents, HSlots> {
 }
 export {};
