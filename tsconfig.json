@@ -1,14 +1,6 @@
 {
 	"extends": "./.svelte-kit/tsconfig.json",
 	"compilerOptions": {
-		"baseUrl": ".",
-    // paths can be omitted for packaging. probably baseUrl too
-		"paths": {
-      "$lib":["src/lib"],
-			"$lib/*": ["src/lib/*"],
-      "$prod":["tusclum"],
-			"$prod/*": ["tusculum/*"]
-		},
     "allowJs": true,
 		"checkJs": true,
     "types": ["svelte"]

@@ -11,7 +11,13 @@ const config = {
 		emitTypes: true
 	},
 	kit: {
-		adapter: adapter()
+    adapter: adapter(),
+    alias: {
+      "$lib": "src/lib",
+			"$lib/*": "src/lib/*",
+      "$prod": "tusclum",
+			"$prod/*": "tusculum/*"
+    }
 	}
 };
 
